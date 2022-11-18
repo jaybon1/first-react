@@ -8,7 +8,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path={"/"} element={<Main />} />
-        <Route path={"/counter"} element={<Counter />} />
+        <Route path={"/counter/:seq"} element={<Counter />} />
       </Routes>
     </BrowserRouter>
   );
