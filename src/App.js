@@ -5,10 +5,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="http://jaybon1.github.io/busan-attrs">
       <Routes>
         <Route path={"/"} element={<Main />} />
         <Route path={"/counter/:seq"} element={<Counter />} />
+        <Route path={"*"} element={<div>페이지가 없습니다.</div>} />
       </Routes>
     </BrowserRouter>
   );

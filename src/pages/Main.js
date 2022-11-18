@@ -27,7 +27,7 @@ const Main = () => {
   const getAttrs = () => {
     axios
       .get(
-        `https://apis.data.go.kr/6260000/AttractionService/getAttractionKr?serviceKey=L4O6Jd5locofQV0Sa674EwMQ4GyHi380DNlzkWVMQLw8O2LvzNMvBKe1RxTj4jssgmQKPrDvinJFtSOIs9KmbA%3D%3D&pageNo=${getPageNo}&numOfRows=10&resultType=json`
+        `https://apis.data.go.kr/6260000/AttractionService/getAttractionKr?serviceKey=KTmcOzZEKWs5WM77q97rTlppoR4J1L9S%2FzMn1vtgHt5fi0WiRDz%2FWyb814EvwY5xfrnfbUOaIQ8yWB%2FFaJW3cg%3D%3D&pageNo=${getPageNo}&numOfRows=10&resultType=json`
       )
       .then((response) => {
         // console.log(response.data.getAttractionKr.item);
@@ -41,13 +41,30 @@ const Main = () => {
 
   useEffect(() => {
     getAttrs();
-  }, []);
+  }, [getPageNo]);
 
   return (
     <HeadLayout>
       <div>
         <div>메인페이지</div>
         <Container>
+          <Row>
+            <Col>
+              <Button
+                className="me-3"
+                variant="dark"
+                onClick={() => navigate(`/?pageNo=${parseInt(getPageNo) - 1}`)}
+              >
+                Prev
+              </Button>
+              <Button
+                variant="dark"
+                onClick={() => navigate(`/?pageNo=${parseInt(getPageNo) + 1}`)}
+              >
+                Next
+              </Button>
+            </Col>
+          </Row>
           <Row className="row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4">
             {attrs.map((value, index) => {
               return (
@@ -61,7 +78,12 @@ const Main = () => {
                       >
                         {value.ITEMCNTNTS}
                       </Card.Text>
-                      <Button variant="primary">Go somewhere</Button>
+                      <Button
+                        variant="primary"
+                        onClick={() => navigate(`/counter/${value.UC_SEQ}`)}
+                      >
+                        자세히 보기
+                      </Button>
                     </Card.Body>
                   </Card>
                 </Col>
