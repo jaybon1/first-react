@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter basename="http://jaybon1.github.io/busan-attrs">
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path={"/"} element={<Main />} />
         <Route path={"/counter/:seq"} element={<Counter />} />
